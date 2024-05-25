@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Access
 
-## Getting Started
+O Access é um software desenvolvido para controle de acesso e reconhecimento facial. 
 
-First, run the development server:
+## 🚀 Começando
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Estas instruções permitirão que você obtenha uma cópia do projeto em execução em sua máquina local para desenvolvimento e teste.
+
+### 📋 Pré-requisitos
+
+O que você precisa para instalar o software?
+
+```
+NPM - Gerenciador de pacotes
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🔧 Instalação
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para instalar, siga os passos abaixo:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Faça uma cópia do repositório em sua máquina.
+2. Configure os arquivos .env e .env.local conforme necessário.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- Para o arquivo .env o seguinte conteúdo:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+DATABASE_URL=file:./dev.db
+```
+- Para o arquivo .env.local o seguinte conteúdo:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+```
 
-## Deploy on Vercel
+3. No terminal, execute:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Finalmente, inicie o servidor e a aplicação web:
+
+```
+npm run dev
+```
+
+O projeto estará pronto e em execução no endereço http://localhost:3000
+
+## 🛠️ Construído com
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Shadcnui](https://github.com/shadcnui)
+- [Prisma](https://www.prisma.io/) 
+
+## ✒️ Autores
+
+- **Matheus Borges** - [LinkedIn](https://www.linkedin.com/in/matheus-borges-4a7469239/)
+
+⌨️ com ❤️ por [BorgesCode](https://github.com/Borgeta-code) 😊
