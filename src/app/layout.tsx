@@ -9,8 +9,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Access",
-  description: "Access control webapp.",
+  title: "Lock",
+  description: "Lock, access control.",
 };
 
 export default function RootLayout({

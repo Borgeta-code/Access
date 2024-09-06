@@ -1,20 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { image: string } }
+) {
   const prisma = new PrismaClient();
 
   try {
-    const clientsWithPermission = await prisma.client.findMany({
+    const client = await prisma.client.findFirst({
       where: {
-        hasPermission: true,
-      },
-      select: {
-        faceImageName: true,
+        faceImageName: params.image,
       },
     });
-
-    return NextResponse.json(clientsWithPermission);
+    return NextResponse.json(client);
   } catch (error) {
     console.log(error);
     return NextResponse.error();

@@ -1,14 +1,17 @@
 import { writeFile } from "fs/promises";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 
-export const POST = async (req: { formData: () => any }, res: any) => {
+export const POST = async (req: NextRequest) => {
   const formData = await req.formData();
 
   const file = formData.get("file");
-  if (!file) {
-    return NextResponse.json({ error: "No files received." }, { status: 400 });
+  if (!file || !(file instanceof Blob)) {
+    return NextResponse.json(
+      { error: "No valid file received." },
+      { status: 400 }
+    );
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());

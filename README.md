@@ -1,6 +1,6 @@
-# Access
+# Lock
 
-O Access é um software desenvolvido para controle de acesso e reconhecimento facial. 
+O Lock é um software desenvolvido para controle de acesso e reconhecimento facial.
 
 ## 🚀 Começando
 
@@ -21,12 +21,12 @@ Para instalar, siga os passos abaixo:
 1. Faça uma cópia do repositório em sua máquina.
 2. Configure os arquivos .env e .env.local conforme necessário.
 
-
 - Para o arquivo .env o seguinte conteúdo:
 
 ```
 DATABASE_URL=file:./dev.db
 ```
+
 - Para o arquivo .env.local o seguinte conteúdo:
 
 ```
@@ -53,7 +53,7 @@ O projeto estará pronto e em execução no endereço http://localhost:3000
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Shadcnui](https://github.com/shadcnui)
-- [Prisma](https://www.prisma.io/) 
+- [Prisma](https://www.prisma.io/)
 
 ## ✒️ Autores
 

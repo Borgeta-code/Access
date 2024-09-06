@@ -1,20 +1,7 @@
 "use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { api } from "@/lib/api";
-import {
-  ImagePlus,
-  Loader2,
-  LockKeyhole,
-  LockKeyholeOpen,
-  Trash2,
-} from "lucide-react";
+import { ImagePlus, Loader2, Trash2 } from "lucide-react";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 
 import toast from "react-hot-toast";
@@ -26,13 +13,13 @@ export default function NewCLientForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [faceImage, setFaceImage] = useState<string | null>(null);
-  const [isAllowed, setIsAllowed] = useState("");
 
   const handleCreateClient = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!name || !faceImage || !isAllowed) {
+    if (!name || !faceImage) {
       return toast.error("Preencha todos os dados", {
         style: {
           background: "rgb(249 115 22)",
@@ -65,19 +52,18 @@ export default function NewCLientForm() {
       }
     }
 
-    const convertIsAllowed = /^true$/i.test(isAllowed);
-
     try {
       await api.post("/client/new", {
         name,
-        isAllowed: convertIsAllowed,
+        email,
         faceImageUrl,
         faceImageName,
+        hasPermission: true, // Default permission
       });
 
       resetForm();
 
-      toast.success("Usuário criado", {
+      toast.success("Cliente criado com sucesso", {
         style: {
           background: "rgb(249 115 22)",
           color: "#ffff",
@@ -89,7 +75,7 @@ export default function NewCLientForm() {
       });
     } catch (error) {
       console.log(error);
-      toast.error("Erro ao criar usuário", {
+      toast.error("Erro ao criar cliente", {
         style: {
           background: "rgb(249 115 22)",
           color: "#ffff",
@@ -106,7 +92,7 @@ export default function NewCLientForm() {
 
   const resetForm = () => {
     setName("");
-    setIsAllowed("");
+    setEmail("");
     setFaceImage(null);
 
     if (formRef.current) {
@@ -179,26 +165,16 @@ export default function NewCLientForm() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <Select value={isAllowed} onValueChange={setIsAllowed}>
-          <SelectTrigger className="w-[280px] text-zinc-500">
-            <SelectValue placeholder="Acesso" />
-          </SelectTrigger>
-          <SelectContent className="bg-neutral-200 border-2 border-orange-500/60">
-            <SelectItem value="true">
-              <div className="flex justify-center items-center gap-2 text-zinc-700">
-                <LockKeyholeOpen className="size-4 text-orange-500" />
-                Liberado
-              </div>
-            </SelectItem>
-            <SelectItem value="false">
-              <div className="flex justify-center items-center gap-2 text-zinc-700">
-                <LockKeyhole className="size-4 text-orange-500" />
-                Não Liberado
-              </div>
-            </SelectItem>
-          </SelectContent>
-        </Select>
+        <Input
+          id="email"
+          type="email"
+          placeholder="Email"
+          className="w-full"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
+
       <Button className="w-full">
         {isLoading ? (
           <>

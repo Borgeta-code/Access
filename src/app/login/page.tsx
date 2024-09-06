@@ -71,30 +71,40 @@ export default function Login() {
         />
       </div>
 
-      <div className="w-full h-full flex  flex-col flex-1 justify-center items-center gap-4 bg-neutral-200 px-4 md:px-0">
-        <h1 className="text-3xl font-medium text-orange-500">Login</h1>
-        <div className="w-full max-w-96 flex flex-col gap-4">
-          <Input
-            type="text"
-            placeholder="Usuário"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button onClick={handleLogin}>
-            {isLoading ? (
-              <Loader2 className="size-5 text-neutral-200 animate-spin" />
-            ) : (
-              <>
-                Entrar <LogIn className="ml-2 size-4" />
-              </>
-            )}
-          </Button>
+      <div className="w-full h-full flex  flex-col flex-1 justify-center items-center bg-neutral-100 px-4 md:px-0">
+        <div className="w-full max-w-96 flex flex-col justify-center items-center gap-5">
+          <h1 className="w-full text-3xl font-medium text-orange-500">Login</h1>
+          <div className="w-full flex flex-col gap-4">
+            <Input
+              type="text"
+              placeholder="Usuário"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+            />
+            <Input
+              type="password"
+              placeholder="Senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button onClick={handleLogin}>
+              {isLoading ? (
+                <Loader2 className="size-5 text-neutral-200 animate-spin" />
+              ) : (
+                <>
+                  Entrar <LogIn className="ml-2 size-4" />
+                </>
+              )}
+            </Button>
+          </div>
+          <div className="w-full flex justify-center items-center gap-4">
+            <div className="w-full h-0.5 bg-zinc-300 bg-opacity-50" />
+            <p className="text-sm text-zinc-400">ou</p>
+            <div className="w-full h-0.5 bg-zinc-300 bg-opacity-50" />
+          </div>
+          <p className="text-sm text-zinc-400 cursor-pointer hover:text-orange-500 transition-colors">
+            Esqueceu a senha?
+          </p>
         </div>
       </div>
     </main>
