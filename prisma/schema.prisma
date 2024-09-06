@@ -7,11 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Client {
-  id            String @id @default(uuid())
+  id            String  @id @default(uuid())
   name          String
-  faceImageUrl     String
-  faceImageName     String
-  isAllowed     Boolean
+  email         String
+  faceImageUrl  String
+  faceImageName String
+  hasPermission Boolean
 }

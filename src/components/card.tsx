@@ -6,13 +6,15 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function Card({ client }: { client: Client }) {
-  const [permission, setPermission] = useState(client.isAllowed);
+  const [permission, setPermission] = useState(client.hasPermission);
 
   const handlePermission = async () => {
     const newPermission = !permission;
     setPermission(newPermission);
 
-    await api.put(`/client/permission?id=${client.id}`);
+    await api.put(`/client/permission/${client.id}`, {
+      hasPermission: newPermission,
+    });
 
     if (newPermission) {
       return toast.success(
@@ -43,37 +45,31 @@ export default function Card({ client }: { client: Client }) {
   };
 
   return (
-    <div className="relative flex justify-center items-center gap-4 p-4 rounded-xl shadow-md border-2 border-orange-500">
+    <div className="w-full md:w-max flex justify-between md:justify-center items-center relative gap-4 py-4 px-6 rounded-2xl shadow-md border-2 border-orange-500">
       <Image
         width={200}
         height={200}
         draggable="false"
-        className="size-24 rounded-full object-cover border-2 border-orange-500"
+        className="size-24 rounded-2xl object-cover"
         alt="imagem-cliente"
         src={client.faceImageUrl}
       />
 
-      <p className="text-base font-medium text-orange-500">{client.name}</p>
+      <div className="flex flex-col gap-1">
+        <p className="text-base font-medium text-orange-500">{client.name}</p>
+        <p className="text-sm text-zinc-400">{client.email}</p>
+      </div>
 
-      {/* <Button className="w-full bg-orange-500/60 hover:bg-orange-500">
-        Excluir <Trash className="ml-2 size-4" />
-      </Button> */}
-
-      {permission == true ? (
-        <div
-          onClick={handlePermission}
-          className="absolute -top-4 -right-4 flex justify-center items-center p-3 rounded-full text-neutral-200 cursor-pointer bg-green-500/80 hover:bg-green-500"
-        >
+      <div
+        onClick={handlePermission}
+        className="flex justify-center items-center p-3 md:absolute -top-4 -right-4 rounded-full text-neutral-100 cursor-pointer bg-orange-500/80 hover:bg-orange-500"
+      >
+        {permission ? (
           <LockKeyholeOpen className="size-5" />
-        </div>
-      ) : (
-        <div
-          onClick={handlePermission}
-          className="absolute -top-4 -right-4 flex justify-center items-center p-3 rounded-full text-neutral-200 cursor-pointer bg-red-600/80 hover:bg-red-600"
-        >
+        ) : (
           <LockKeyholeIcon className="size-5" />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

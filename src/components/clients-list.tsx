@@ -38,16 +38,15 @@ export default function ClientsList() {
   }, []);
 
   return (
-    <div className="container h-full flex flex-col justify-center items-center gap-2 px-8 py-4 mb-2">
+    <div className="container h-full flex flex-col justify-center items-center gap-5 px-8 py-4 mb-2">
       <div className="w-full flex items-center justify-between">
-        <p className="text-base md:text-lg text-zinc-500">Clientes</p>
+        <p className="text-base font-medium md:text-lg text-zinc-300">
+          Clientes
+        </p>
 
         <Dialog>
           <DialogTrigger asChild>
-            <Button
-              variant="ghost"
-              className="text-orange-500 hover:bg-orange-500 hover:text-neutral-200"
-            >
+            <Button variant="ghost">
               Novo cliente <UserPlus className="ml-2 size-4" />
             </Button>
           </DialogTrigger>
@@ -62,9 +61,9 @@ export default function ClientsList() {
         </Dialog>
       </div>
 
-      <div className="w-full flex flex-wrap gap-6 mt-3">
+      <div className="w-full flex flex-wrap gap-6">
         {isLoading
-          ? [...Array(5)].map((_, index) => <Skeleton key={index} />)
+          ? [...Array(15)].map((_, index) => <Skeleton key={index} />)
           : clients.map((client) => <Card key={client.id} client={client} />)}
       </div>
     </div>
